@@ -1,177 +1,138 @@
 # Interview Preparation Chatbot
 
-A full-stack interview preparation chatbot built with Node.js, Express, SQLite, React, and Vite. The project is centered around a single chatbot interface and supports three core flows: normal interview Q&A, structured concept learning, and chatbot-driven interview practice.
+An AI-powered interview preparation chatbot designed to help students and job seekers practice technical, HR, aptitude, and behavioral interview questions through an interactive conversational interface. The chatbot provides concept explanations, interview practice sessions, and instant responses using a retrieval-based approach over a local SQLite database without relying on external AI APIs.
 
-The system uses local retrieval over SQLite data and does not rely on any external AI API.
+---
 
-## Features
+## 📌 Problem Statement
 
-- Chatbot Mode
-  Ask interview questions across behavioral, programming, OOP, DBMS, OS, CN, and DSA topics.
-- Learning Mode
-  Concept-style queries return a structured learning block with a concept title, short explanation, key points, example, and a related interview question when available.
-- Practice Mode
-  The chatbot can ask interview questions, keep lightweight in-memory practice state, evaluate answers, and continue within the same domain.
-- Retrieval-first backend
-  Answers are selected from local SQLite data using query understanding, source control, and weighted scoring.
-- Beginner-friendly structure
-  The backend follows a simple route -> controller -> service -> repository flow, and the frontend remains a single-page React app.
+Preparing for technical interviews often requires switching between multiple resources such as interview websites, notes, videos, and books. This makes learning fragmented and inefficient.
 
-## Tech Stack
+The Interview Preparation Chatbot addresses this problem by providing a single conversational platform where users can learn concepts, practice interview questions, and receive structured responses in real time.
 
-- Backend: Node.js, Express
-- Database: SQLite with `better-sqlite3`
-- Frontend: React, Vite
-- Development: Nodemon
+---
 
-## Architecture Overview
+## ✨ Key Features
 
-The project is split into two main parts:
+### 💬 Chatbot Mode
+- Ask technical and HR interview questions
+- Covers DSA, OOP, DBMS, Operating Systems, Computer Networks, Programming, and Behavioral topics
+- Instant retrieval-based responses
 
-- Backend
-  Handles chat requests, retrieval, learning formatting, and practice session logic.
-- Frontend
-  Provides a single-page chat UI that displays user messages, bot replies, learning cards, and practice feedback.
+### 📖 Learning Mode
+- Structured concept explanations
+- Key points and examples
+- Related interview questions
+- Beginner-friendly learning format
 
-Request flow:
+### 🎯 Practice Mode
+- Interactive mock interview sessions
+- Domain-specific practice
+- Answer evaluation and feedback
+- Session-based interview flow
 
-1. `POST /chat` or `POST /api/chat`
-2. Express route
-3. Controller validation
-4. Chat service
-5. Repository retrieval from SQLite
-6. Structured response back to the UI
+### ⚡ Retrieval Engine
+- SQLite-based knowledge retrieval
+- Intent detection
+- Keyword extraction
+- Domain identification
+- Weighted relevance scoring
 
-## Folder Structure
+---
+
+## 🏗️ System Architecture
+
+```mermaid
+flowchart LR
+    USER["User"] --> UI["React + Vite Frontend"]
+    UI --> API["Express REST API"]
+    API --> CONTROLLER["Controller Layer"]
+    CONTROLLER --> SERVICE["Chat Service"]
+    SERVICE --> REPOSITORY["Repository Layer"]
+    REPOSITORY --> DB[(SQLite Database)]
+```
+
+---
+
+## 💻 Tech Stack
+
+### Frontend
+- React
+- Vite
+- JavaScript
+- CSS
+
+### Backend
+- Node.js
+- Express.js
+
+### Database
+- SQLite
+- better-sqlite3
+
+### Development Tools
+- Nodemon
+
+---
+
+## 🚀 Key Functionalities
+
+- Technical interview question answering
+- HR interview preparation
+- Behavioral interview practice
+- Concept learning mode
+- Interactive mock interviews
+- SQLite-based retrieval engine
+- Structured chatbot responses
+- Lightweight session management
+
+---
+
+## 📂 Project Structure
 
 ```text
 InterviewPrepChatbot/
-|-- client/
-|   |-- src/
-|   |   |-- api/
-|   |   |   `-- chatApi.js
-|   |   |-- components/
-|   |   |   `-- ChatMessage.jsx
-|   |   |-- App.jsx
-|   |   |-- main.jsx
-|   |   `-- styles.css
-|   |-- package.json
-|   `-- vite.config.js
-|-- data/
-|   `-- interview_prep_chatbot.db
-|-- src/
-|   |-- config/
-|   |   `-- db.js
-|   |-- controllers/
-|   |   `-- chatController.js
-|   |-- data/
-|   |   |-- datasets/
-|   |   |   |-- Mock_interview_questions.json
-|   |   |   `-- Software Questions.csv
-|   |   |-- utils/
-|   |   |   `-- interviewDatasetImporter.js
-|   |   |-- interviewKnowledge.js
-|   |   |-- seedInterviewData.js
-|   |   |-- seedMockInterviewQuestions.js
-|   |   |-- seedSyntheticInterviewQuestions.js
-|   |   |-- seedTechnicalInterviewQuestions.js
-|   |   `-- syntheticInterviewQuestions.js
-|   |-- models/
-|   |   `-- InterviewQuestion.js
-|   |-- repositories/
-|   |   `-- interviewQuestionRepository.js
-|   |-- routes/
-|   |   `-- chatRoutes.js
-|   |-- services/
-|   |   `-- chatService.js
-|   |-- app.js
-|   `-- server.js
-|-- .env
-|-- .env.example
-|-- package.json
-`-- README.md
+├── client/
+├── data/
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── data/
+│   ├── models/
+│   ├── repositories/
+│   ├── routes/
+│   ├── services/
+│   ├── app.js
+│   └── server.js
+├── .env.example
+├── package.json
+├── README.md
+└── interview_prep_chatbot.db
 ```
 
-## How Retrieval Works
+---
 
-The chatbot uses a retrieval-based approach over the `interview_questions` table in SQLite.
+## ⚙️ Installation
 
-At a high level:
+### Clone the Repository
 
-1. The user query is normalized.
-2. Keywords are extracted from the query.
-3. The backend detects likely intent such as:
-   - definition
-   - explanation
-   - comparison
-   - practice
-4. The backend detects likely domain such as:
-   - behavioral
-   - programming
-   - oop
-   - dbms
-   - os
-   - cn
-   - dsa
-5. SQLite fetches candidate rows using broad matching across:
-   - question
-   - answer
-   - topic
-   - tags
-   - keywords
-   - domain
-   - subtopic
-6. Candidates are scored in JavaScript.
-   Higher weight is given to question matches, keyword matches, domain matches, and topic matches.
-7. The best result is returned only if it passes a minimum relevance threshold.
+```bash
+git clone https://github.com/your-username/InterviewPrepChatbot.git
+```
 
-### Source Rules
+### Navigate to the Project
 
-Normal Chat Mode and Learning Mode use:
+```bash
+cd InterviewPrepChatbot
+```
 
-- `synthetic_dataset`
-- `starter_data`
-- `technical_dataset`
-
-Normal retrieval does **not** use `mock_dataset`.
-
-Source preference for normal retrieval:
-
-1. `synthetic_dataset`
-2. `starter_data`
-3. `technical_dataset` only if the match is strong enough
-
-Practice Mode is stricter:
-
-- it uses `synthetic_dataset` only
-- it stays within the active practice domain unless the user explicitly switches topics
-
-## Data Sources
-
-The SQLite database can contain multiple sources:
-
-- `synthetic_dataset`
-- `starter_data`
-- `technical_dataset`
-- `mock_dataset`
-
-Current usage:
-
-- Chat/Learning: `synthetic_dataset`, `starter_data`, `technical_dataset`
-- Practice: `synthetic_dataset` only
-- `mock_dataset` remains in the database but is excluded from normal chat/learning retrieval
-
-## How To Run
-
-### 1. Install dependencies
-
-From the project root:
+### Install Backend Dependencies
 
 ```bash
 npm install
 ```
 
-Install frontend dependencies:
+### Install Frontend Dependencies
 
 ```bash
 cd client
@@ -179,118 +140,137 @@ npm install
 cd ..
 ```
 
-### 2. Configure environment
+### Configure Environment Variables
 
-Create a `.env` file in the project root:
+Create a `.env` file:
 
 ```env
 PORT=5000
 SQLITE_DB_PATH=data/interview_prep_chatbot.db
 ```
 
-### 3. Seed the database
-
-Seed the curated synthetic data:
-
-```bash
-npm run seed:synthetic
-```
-
-Optional additional datasets:
-
-```bash
-npm run seed
-npm run seed:technical
-npm run seed:mock
-```
-
-### 4. Start the backend
+### Start Backend
 
 ```bash
 npm run dev
 ```
 
-Backend runs on:
-
-```text
-http://localhost:5000
-```
-
-### 5. Start the frontend
-
-In a second terminal:
+### Start Frontend
 
 ```bash
 npm run client:dev
 ```
 
-Frontend runs on:
+Backend:
+
+```text
+http://localhost:5000
+```
+
+Frontend:
 
 ```text
 http://localhost:5173
 ```
 
-## API
+---
 
-Health check:
+## 📡 API Endpoints
 
-```text
-GET /api/health
-```
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| GET | `/api/health` | Health Check |
+| POST | `/chat` | Chat Endpoint |
+| POST | `/api/chat` | Chat Endpoint |
 
-Chat endpoints:
+---
 
-```text
-POST /chat
-POST /api/chat
-```
+## 💡 Sample Queries
 
-Request body:
+### Technical
 
-```json
-{
-  "message": "What is polymorphism in OOP?"
-}
-```
+- What is polymorphism?
+- Explain normalization in DBMS.
+- Difference between process and thread.
+- What is hashing?
+- Explain merge sort.
 
-## Sample Queries
+### Learning Mode
 
-Chatbot Mode:
+- Explain dynamic programming.
+- What is multithreading?
+- Explain deadlock.
 
-- `What is normalization in DBMS?`
-- `Difference between process and thread`
-- `What is insertion sort?`
-- `What is merge sort?`
-- `Hashmap`
-- `Explain polymorphism`
+### Practice Mode
 
-Learning Mode:
+- Ask me questions on OOP.
+- Practice DBMS.
+- Ask me HR interview questions.
+- Next question.
+- Stop practice.
 
-- `What is dynamic programming?`
-- `What is hashing in DSA?`
-- `Explain deadlock`
-- `What is multithreading?`
+---
 
-Practice Mode:
+# 📸 Screenshots
 
-- `Ask me questions on OOP`
-- `Practice DBMS`
-- `Ask me interview questions about behavioral rounds`
-- `Next question`
-- `Stop practice`
+### Home Page
 
-## Future Improvements
+![Home](screenshots/home.jpg)
 
-- Add bookmarks for useful answers
-- Add lightweight progress tracking
-- Improve learning examples for more CS topics
-- Add more curated synthetic entries for advanced interview questions
-- Add unit tests for retrieval, learning formatting, and practice session handling
-- Add exportable practice summaries
+---
 
-## Notes
+### Chatbot Interface
 
-- The chatbot remains the core interface of the system.
-- The project is intentionally simple, modular, and beginner-friendly.
-- SQLite is the only database used.
-- No external AI API is used for answering questions.
+![Chatbot](screenshots/chatbot.jpg)
+
+---
+
+### Learning Mode
+
+![Learning](screenshots/learning.jpg)
+
+---
+
+### Practice Mode
+
+![Practice](screenshots/practice.jpg)
+
+---
+
+### Technical Interview Session
+
+![Technical](screenshots/technical.jpg)
+
+---
+
+### HR Interview Session
+
+![HR](screenshots/hr.jpg)
+
+---
+
+##  Future Enhancements
+
+- AI-powered answer evaluation
+- User authentication
+- Progress tracking dashboard
+- Bookmark important questions
+- Export interview summaries
+- Voice-based interview practice
+- Additional interview datasets
+
+---
+
+##  Author
+
+**Alfina Fhobi R**
+
+B.Tech Computer Science and Engineering
+
+Karunya Institute of Technology and Sciences
+
+---
+
+##  License
+
+This project is developed for academic and educational purposes.
