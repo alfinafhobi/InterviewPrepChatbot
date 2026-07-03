@@ -1,0 +1,517 @@
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #152033;
+  background:
+    radial-gradient(circle at top left, rgba(78, 184, 255, 0.28), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(15, 159, 143, 0.12), transparent 26%),
+    linear-gradient(160deg, #f5f9ff 0%, #eef4fb 48%, #fcfeff 100%);
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.page-shell {
+  min-height: 100vh;
+  padding: 24px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-panel {
+  width: min(100%, 920px);
+  min-height: min(84vh, 860px);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  border: 1px solid rgba(21, 32, 51, 0.08);
+  border-radius: 30px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 24px 70px rgba(31, 51, 84, 0.12),
+    0 4px 18px rgba(31, 51, 84, 0.05);
+}
+
+.chat-header {
+  padding: 30px 30px 22px;
+  border-bottom: 1px solid rgba(21, 32, 51, 0.08);
+  background:
+    linear-gradient(135deg, rgba(18, 111, 216, 0.1), rgba(13, 148, 136, 0.08)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5));
+}
+
+.header-block {
+  display: grid;
+  gap: 4px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #126fd8;
+}
+
+.chat-header h1 {
+  margin: 0;
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
+  letter-spacing: -0.02em;
+}
+
+.header-copy {
+  margin: 12px 0 0;
+  max-width: 620px;
+  color: #536783;
+  font-size: 0.98rem;
+}
+
+.practice-indicator {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(15, 159, 143, 0.08);
+  border: 1px solid rgba(15, 159, 143, 0.14);
+}
+
+.practice-indicator-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #0f9f8f;
+  box-shadow: 0 0 0 6px rgba(15, 159, 143, 0.12);
+}
+
+.practice-indicator-text {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #1c5a57;
+}
+
+.chat-messages {
+  padding: 26px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: linear-gradient(180deg, rgba(249, 252, 255, 0.45), rgba(255, 255, 255, 0.2));
+}
+
+.messages-end {
+  height: 1px;
+}
+
+.message-row {
+  display: flex;
+}
+
+.user-row {
+  justify-content: flex-end;
+}
+
+.bot-row {
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  max-width: min(78%, 680px);
+  padding: 16px 18px;
+  border-radius: 22px;
+  box-shadow: 0 10px 28px rgba(17, 24, 39, 0.08);
+}
+
+.message-bubble p {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.mode-badge {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(18, 111, 216, 0.07);
+  color: #4e6684;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.user-bubble {
+  background: linear-gradient(135deg, #126fd8, #0f9f8f);
+  color: #ffffff;
+  border-bottom-right-radius: 10px;
+}
+
+.bot-bubble {
+  background: #ffffff;
+  color: #152033;
+  border: 1px solid rgba(21, 32, 51, 0.08);
+  border-bottom-left-radius: 10px;
+}
+
+.thinking-bubble {
+  color: #51657f;
+}
+
+.error-bubble {
+  border-color: rgba(196, 57, 57, 0.2);
+  background: #fff7f7;
+  color: #8b2222;
+}
+
+.message-details {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(21, 32, 51, 0.08);
+  display: grid;
+  gap: 14px;
+}
+
+.message-answer {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #132338;
+}
+
+.learning-card {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 111, 216, 0.05),
+    rgba(15, 159, 143, 0.04)
+  );
+  border: 1px solid rgba(18, 111, 216, 0.08);
+}
+
+.practice-card {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 159, 143, 0.05),
+    rgba(18, 111, 216, 0.03)
+  );
+  border: 1px solid rgba(15, 159, 143, 0.12);
+}
+
+.practice-block {
+  display: grid;
+  gap: 5px;
+}
+
+.practice-question,
+.practice-answer-summary {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #21364f;
+}
+
+.practice-summary-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.feedback-badge,
+.practice-score {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.feedback-badge.score-good {
+  background: rgba(48, 146, 94, 0.12);
+  color: #276a48;
+}
+
+.feedback-badge.score-partial {
+  background: rgba(214, 169, 58, 0.16);
+  color: #82631a;
+}
+
+.feedback-badge.score-needs-improvement {
+  background: rgba(201, 94, 94, 0.12);
+  color: #8b4242;
+}
+
+.feedback-badge.score-neutral {
+  background: rgba(90, 111, 137, 0.1);
+  color: #52657f;
+}
+
+.practice-score {
+  background: rgba(18, 111, 216, 0.08);
+  color: #335577;
+}
+
+.learning-block {
+  display: grid;
+  gap: 5px;
+}
+
+.learning-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #12253d;
+}
+
+.learning-text {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #334964;
+}
+
+.learning-list {
+  margin: 0;
+  padding-left: 18px;
+  color: #334964;
+  display: grid;
+  gap: 6px;
+}
+
+.learning-list li {
+  line-height: 1.55;
+}
+
+.learning-example {
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(21, 32, 51, 0.08);
+}
+
+.learning-related-button {
+  justify-self: start;
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: #165ca8;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+}
+
+.learning-related-button:hover {
+  color: #0f4d90;
+}
+
+.matched-question {
+  display: grid;
+  gap: 4px;
+}
+
+.matched-question-text {
+  font-size: 0.95rem;
+  color: #425671;
+}
+
+.meta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(18, 111, 216, 0.08);
+  color: #45617f;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+}
+
+.detail-item {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(245, 248, 252, 0.9);
+}
+
+.detail-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #5d6f89;
+}
+
+.detail-value {
+  font-size: 0.9rem;
+  color: #152033;
+}
+
+.practice-actions {
+  padding: 12px 24px 0;
+}
+
+.secondary-button {
+  border: 1px solid rgba(18, 111, 216, 0.16);
+  border-radius: 14px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1a4d84;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+.secondary-button:hover:not(:disabled) {
+  background: rgba(18, 111, 216, 0.06);
+  border-color: rgba(18, 111, 216, 0.26);
+  transform: translateY(-1px);
+}
+
+.secondary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.chat-form {
+  padding: 18px 24px 24px;
+  border-top: 1px solid rgba(21, 32, 51, 0.08);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  background: rgba(248, 251, 255, 0.92);
+}
+
+.chat-input {
+  width: 100%;
+  min-height: 56px;
+  border: 1px solid rgba(21, 32, 51, 0.14);
+  border-radius: 16px;
+  padding: 0 16px;
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chat-input:focus {
+  border-color: #126fd8;
+  box-shadow: 0 0 0 4px rgba(18, 111, 216, 0.12);
+}
+
+.send-button {
+  min-width: 132px;
+  border: none;
+  border-radius: 16px;
+  padding: 0 20px;
+  background: linear-gradient(135deg, #126fd8, #0f9f8f);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(18, 111, 216, 0.22);
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+}
+
+.send-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(18, 111, 216, 0.28);
+}
+
+.send-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    padding: 12px;
+  }
+
+  .chat-panel {
+    min-height: 94vh;
+    border-radius: 24px;
+  }
+
+  .chat-header,
+  .chat-messages,
+  .chat-form {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .practice-actions {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .chat-header {
+    padding-top: 22px;
+    padding-bottom: 18px;
+  }
+
+  .chat-form {
+    grid-template-columns: 1fr;
+  }
+
+  .send-button {
+    min-height: 52px;
+  }
+
+  .message-bubble {
+    max-width: 88%;
+  }
+
+  .practice-summary-row {
+    align-items: flex-start;
+  }
+}
