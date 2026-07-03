@@ -12,26 +12,26 @@ The Interview Preparation Chatbot addresses this problem by providing a single c
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
-### 💬 Chatbot Mode
+###  Chatbot Mode
 - Ask technical and HR interview questions
 - Covers DSA, OOP, DBMS, Operating Systems, Computer Networks, Programming, and Behavioral topics
 - Instant retrieval-based responses
 
-### 📖 Learning Mode
+### Learning Mode
 - Structured concept explanations
 - Key points and examples
 - Related interview questions
 - Beginner-friendly learning format
 
-### 🎯 Practice Mode
+###  Practice Mode
 - Interactive mock interview sessions
 - Domain-specific practice
 - Answer evaluation and feedback
 - Session-based interview flow
 
-### ⚡ Retrieval Engine
+###  Retrieval Engine
 - SQLite-based knowledge retrieval
 - Intent detection
 - Keyword extraction
@@ -40,7 +40,7 @@ The Interview Preparation Chatbot addresses this problem by providing a single c
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 ```mermaid
 flowchart LR
@@ -54,7 +54,7 @@ flowchart LR
 
 ---
 
-## 💻 Tech Stack
+##  Tech Stack
 
 ### Frontend
 - React
@@ -75,7 +75,7 @@ flowchart LR
 
 ---
 
-## 🚀 Key Functionalities
+##  Key Functionalities
 
 - Technical interview question answering
 - HR interview preparation
@@ -88,7 +88,7 @@ flowchart LR
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 InterviewPrepChatbot/
@@ -112,7 +112,7 @@ InterviewPrepChatbot/
 
 ---
 
-## ⚙️ Installation
+##  Installation
 
 ### Clone the Repository
 
@@ -185,67 +185,15 @@ http://localhost:5173
 
 ---
 
-## 💡 Sample Queries
-
-### Technical
-
-- What is polymorphism?
-- Explain normalization in DBMS.
-- Difference between process and thread.
-- What is hashing?
-- Explain merge sort.
-
-### Learning Mode
-
-- Explain dynamic programming.
-- What is multithreading?
-- Explain deadlock.
-
-### Practice Mode
-
-- Ask me questions on OOP.
-- Practice DBMS.
-- Ask me HR interview questions.
-- Next question.
-- Stop practice.
-
----
-
 # 📸 Screenshots
 
-### Home Page
 
-![Home](screenshots/home.jpg)
-
----
-
-### Chatbot Interface
-
-![Chatbot](screenshots/chatbot.jpg)
+![](screenshots/Picture1.jpg)
 
 ---
 
-### Learning Mode
 
-![Learning](screenshots/learning.jpg)
-
----
-
-### Practice Mode
-
-![Practice](screenshots/practice.jpg)
-
----
-
-### Technical Interview Session
-
-![Technical](screenshots/technical.jpg)
-
----
-
-### HR Interview Session
-
-![HR](screenshots/hr.jpg)
+![](screenshots/Picture2.jpg)
 
 ---
 
